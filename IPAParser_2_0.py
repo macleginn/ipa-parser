@@ -328,6 +328,7 @@ def parse_single_glyph(g):
     elif g in LATERAL_APPROXIMANTS:
         update_parse(parse, { 'manner': 'approximant' })
         update_parse(parse, { 'nasal': False })
+        update_parse(parse, { 'lateral': True })
     else:
         raise ValueError("Unrecognised glyph: %s" % g)
     
@@ -404,7 +405,10 @@ def parse_affricate(glyph_list, parse):
         elif p2['place'] not in {'alveolar', 'interdental'}:
             raise ValueError('Incompatible place features: %s' % parse['glyph'])
     else:
-        update_parse(parse, { 'place': p1['place'] })
+        if p2['place'] in { 'alveolar', 'dental' }:
+            update_parse(parse, { 'place': 'labio-coronal' })
+        else:
+            update_parse(parse, { 'place': p2['place'] })
     # Features of the first item will be ignored,
     # except for breathy voice in voiced affricates.
     # Implosive affricates are considered unlikely
@@ -447,26 +451,33 @@ def parse_bifocal(glyph_list, parse):
 def parse_double_glyph(phon, feat_dict):
     glyph_list = separate_main_glyphs(phon)
     # Are you a prenasalised segment?
-    if glyph_list[0][0] in NASALS:
+    if is_bifocal(glyph_list):
+        parse_bifocal(glyph_list, feat_dict)
+    elif glyph_list[0][0] in NASALS:
         update_parse(feat_dict, { 'pre-features': 'pre-nasalised'})
-        extract_core_features(phon[1:], feat_dict)
+        phon = phon[1:]
+        # Ignore all the modifiers for the prenasalisation
+        while phon[0] not in MAIN_GLYPHS_CONS:
+            phon = phon[1:]
+        extract_core_features(phon, feat_dict)
     elif glyph_list[0][0] == 'ʔ':
-        update_parse(feat_dict, { 'pre-features': 'pre-glottalised'})
+        update_parse(feat_dict, { 'pre-features': 'pre-glottalised' })
         extract_core_features(phon[1:], feat_dict)
     elif glyph_list[-1][0] == 'r':
-        update_parse(feat_dict, { 'additional articulations': 'trilled released'})
+        update_parse(feat_dict, { 'additional articulations': 'trilled released' })
         extract_core_features(phon[:-1], feat_dict)
     elif glyph_list[-1][0] == 'ɾ':
-        update_parse(feat_dict, { 'additional articulations': 'flapped'})
+        update_parse(feat_dict, { 'additional articulations': 'flapped' })
         extract_core_features(phon[:-1], feat_dict)
     elif glyph_list[-1][0] in NASALS:
-        update_parse(feat_dict, { 'additional articulations': 'nasal released'})
+        update_parse(feat_dict, { 'additional articulations': 'nasal released' })
         extract_core_features(phon[:-1], feat_dict)
     elif glyph_list[-1][0] in LATERAL_APPROXIMANTS:
-        update_parse(feat_dict, { 'additional articulations': 'lateral released'})
+        update_parse(feat_dict, { 'additional articulations': 'lateral released' })
         extract_core_features(phon[:-1], feat_dict)
-    elif is_bifocal(glyph_list):
-        parse_bifocal(glyph_list, feat_dict)
+    elif glyph_list[-1][0] in { 'h', 'ɦ' }:
+        update_parse(feat_dict, { 'additional articulations': 'aspirated' })
+        extract_core_features(phon[:-1], feat_dict)
     elif is_affricate(glyph_list):
         parse_affricate(glyph_list, feat_dict)
     else:
@@ -484,7 +495,11 @@ def extract_core_features(phon, feat_dict):
         # Only pre-nasalised affricates have been met with so far
         if glyph_list[0][0] in NASALS:
             update_parse(feat_dict, { 'pre-features': 'pre-nasalised'})
-            extract_core_features(phon[1:], feat_dict)
+            phon = phon[1:]
+            # Ignore all the modifiers for the prenasalisation
+            while phon[0] not in MAIN_GLYPHS_CONS:
+                phon = phon[1:]
+            extract_core_features(phon, feat_dict)
         elif glyph_list[2][0] in TRILLS:
             update_parse(feat_dict, { 'additional articulations': 'trilled released'})
             extract_core_features(phon[:-1], feat_dict)
