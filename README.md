@@ -1,0 +1,1 @@
+I new, strictly better version of the IPA parser used in [https://github.com/macleginn/eurasian-phonologies](https://github.com/macleginn/eurasian-phonologies). Will be incorporated there when ready (only handles consonants at this point).
