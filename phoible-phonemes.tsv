@@ -8213,7 +8213,7 @@ InventoryID	Source	LanguageCode	LanguageName	Trump	PhonemeID	GlyphID	Phoneme	Cla
 220	UPSID	amo	AMO	1	8212	180	v	consonant	c	1
 220	UPSID	amo	AMO	1	8213	48	z	consonant	c	1
 221	UPSID	amp	ALAMBLAK	1	8214	47	ʃ	consonant	c	1
-221	UPSID	amp	ALAMBLAK	1	8215	1428	ᴅ	consonant	c	1
+221	UPSID	amp	ALAMBLAK	1	8215	1428	ɾ	consonant	c	1
 221	UPSID	amp	ALAMBLAK	1	8216	207	o̞	vowel	v-d	2
 221	UPSID	amp	ALAMBLAK	1	8217	8	kʰ	consonant	c-c	2
 221	UPSID	amp	ALAMBLAK	1	8218	51	d̠ʒ	consonant	c-d-c	3
@@ -8784,7 +8784,7 @@ InventoryID	Source	LanguageCode	LanguageName	Trump	PhonemeID	GlyphID	Phoneme	Cla
 237	UPSID	bak	BASHKIR	1	8783	116	x	consonant	c	1
 237	UPSID	bak	BASHKIR	1	8784	48	z	consonant	c	1
 238	UPSID	bam	BAMBARA	2	8785	47	ʃ	consonant	c	1
-238	UPSID	bam	BAMBARA	2	8786	1428	ᴅ	consonant	c	1
+238	UPSID	bam	BAMBARA	2	8786	1428	ɾ	consonant	c	1
 238	UPSID	bam	BAMBARA	2	8787	337	õ	vowel	v-c	2
 238	UPSID	bam	BAMBARA	2	8788	5	o	vowel	v	1
 238	UPSID	bam	BAMBARA	2	8789	243	ũ	vowel	v-c	2
@@ -10859,7 +10859,7 @@ InventoryID	Source	LanguageCode	LanguageName	Trump	PhonemeID	GlyphID	Phoneme	Cla
 304	UPSID	deu	GERMAN	2	10858	180	v	consonant	c	1
 304	UPSID	deu	GERMAN	2	10859	116	x	consonant	c	1
 304	UPSID	deu	GERMAN	2	10860	48	z	consonant	c	1
-305	UPSID	dif	DIYARI	1	10861	1428	ᴅ	consonant	c	1
+305	UPSID	dif	DIYARI	1	10861	1428	ɾ	consonant	c	1
 305	UPSID	dif	DIYARI	1	10862	218	ʈ	consonant	c	1
 305	UPSID	dif	DIYARI	1	10863	927	ʎ	consonant	c	1
 305	UPSID	dif	DIYARI	1	10864	264	n̪	consonant	c-d	2
@@ -11095,7 +11095,7 @@ InventoryID	Source	LanguageCode	LanguageName	Trump	PhonemeID	GlyphID	Phoneme	Cla
 313	UPSID	dts	DOGON	1	11094	293	l̪	consonant	c-d	2
 313	UPSID	dts	DOGON	1	11095	337	õ	vowel	v-c	2
 313	UPSID	dts	DOGON	1	11096	5	o	vowel	v	1
-313	UPSID	dts	DOGON	1	11097	1428	ᴅ	consonant	c	1
+313	UPSID	dts	DOGON	1	11097	1428	ɾ	consonant	c	1
 313	UPSID	dts	DOGON	1	11098	243	ũ	vowel	v-c	2
 313	UPSID	dts	DOGON	1	11099	242	s̪	consonant	c-d	2
 313	UPSID	dts	DOGON	1	11100	51	d̠ʒ	consonant	c-d-c	3
@@ -14248,7 +14248,7 @@ InventoryID	Source	LanguageCode	LanguageName	Trump	PhonemeID	GlyphID	Phoneme	Cla
 413	UPSID	kjq	ACOMA	1	14247	198	cʼ	consonant	c-c	2
 413	UPSID	kjq	ACOMA	1	14248	24	ɛ	vowel	v	1
 413	UPSID	kjq	ACOMA	1	14249	194	cʰ	consonant	c-c	2
-413	UPSID	kjq	ACOMA	1	14250	1610	ᴅ̪̰	consonant	c-d-d	3
+413	UPSID	kjq	ACOMA	1	14250	1610	ɾ̪̰	consonant	c-d-d	3
 413	UPSID	kjq	ACOMA	1	14251	798	t̪ʼ	consonant	c-d-c	3
 413	UPSID	kjq	ACOMA	1	14252	209	ɟ	consonant	c	1
 413	UPSID	kjq	ACOMA	1	14253	30	ɡ	consonant	c	1
@@ -14256,7 +14256,7 @@ InventoryID	Source	LanguageCode	LanguageName	Trump	PhonemeID	GlyphID	Phoneme	Cla
 413	UPSID	kjq	ACOMA	1	14255	45	b	consonant	c	1
 413	UPSID	kjq	ACOMA	1	14256	1611	e̞o̞	vowel	v-d-v-d	4
 413	UPSID	kjq	ACOMA	1	14257	1612	s̪ʼ	consonant	c-d-c	3
-413	UPSID	kjq	ACOMA	1	14258	1613	ᴅ̪	consonant	c-d	2
+413	UPSID	kjq	ACOMA	1	14258	1613	ɾ̪	consonant	c-d	2
 413	UPSID	kjq	ACOMA	1	14259	25	i	vowel	v	1
 413	UPSID	kjq	ACOMA	1	14260	74	ɨ	vowel	v	1
 413	UPSID	kjq	ACOMA	1	14261	32	j	consonant	c	1
@@ -17978,7 +17978,7 @@ InventoryID	Source	LanguageCode	LanguageName	Trump	PhonemeID	GlyphID	Phoneme	Cla
 527	UPSID	ron	ROMANIAN	2	17977	1407	r̪	consonant	c-d	2
 528	UPSID	roo	ROTOKAS	1	17978	30	ɡ	consonant	c	1
 528	UPSID	roo	ROTOKAS	1	17979	12	a	vowel	v	1
-528	UPSID	roo	ROTOKAS	1	17980	1428	ᴅ	consonant	c	1
+528	UPSID	roo	ROTOKAS	1	17980	1428	ɾ	consonant	c	1
 528	UPSID	roo	ROTOKAS	1	17981	25	i	vowel	v	1
 528	UPSID	roo	ROTOKAS	1	17982	29	k	consonant	c	1
 528	UPSID	roo	ROTOKAS	1	17983	203	e̞	vowel	v-d	2
@@ -18787,7 +18787,7 @@ InventoryID	Source	LanguageCode	LanguageName	Trump	PhonemeID	GlyphID	Phoneme	Cla
 552	UPSID	som	SOMALI	2	18786	55	w	consonant	c	1
 552	UPSID	som	SOMALI	2	18787	116	x	consonant	c	1
 552	UPSID	som	SOMALI	2	18788	37	ɾ	consonant	c	1
-553	UPSID	spa	SPANISH	2	18789	1428	ᴅ	consonant	c	1
+553	UPSID	spa	SPANISH	2	18789	1428	ɾ	consonant	c	1
 553	UPSID	spa	SPANISH	2	18790	293	l̪	consonant	c-d	2
 553	UPSID	spa	SPANISH	2	18791	927	ʎ	consonant	c	1
 553	UPSID	spa	SPANISH	2	18792	207	o̞	vowel	v-d	2
@@ -20813,7 +20813,7 @@ InventoryID	Source	LanguageCode	LanguageName	Trump	PhonemeID	GlyphID	Phoneme	Cla
 622	UPSID	wuu	CHANGZHOU	2	20815	1406	t̪s̪ʰ	consonant	c-d-c-d-c	5
 623	UPSID	wyb	NGIYAMBAA	1	20816	12	a	vowel	v	1
 623	UPSID	wyb	NGIYAMBAA	1	20817	264	n̪	consonant	c-d	2
-623	UPSID	wyb	NGIYAMBAA	1	20818	1428	ᴅ	consonant	c	1
+623	UPSID	wyb	NGIYAMBAA	1	20818	1428	ɾ	consonant	c	1
 623	UPSID	wyb	NGIYAMBAA	1	20819	25	i	vowel	v	1
 623	UPSID	wyb	NGIYAMBAA	1	20820	1410	n̠	consonant	c-d	2
 623	UPSID	wyb	NGIYAMBAA	1	20821	29	k	consonant	c	1
@@ -48735,7 +48735,7 @@ InventoryID	Source	LanguageCode	LanguageName	Trump	PhonemeID	GlyphID	Phoneme	Cla
 1377	GM	fli	Kirya-Konzɘl	1	48737	294	ɲ	consonant	c	1
 1377	GM	fli	Kirya-Konzɘl	1	48738	51	d̠ʒ	consonant	c-d-c	3
 1377	GM	fli	Kirya-Konzɘl	1	48739	49	t̠ʃ	consonant	c-d-c	3
-1377	GM	fli	Kirya-Konzɘl	1	48740	2573	ˀy	consonant	c-v	2
+1377	GM	fli	Kirya-Konzɘl	1	48740	2573	ˀj	consonant	c-v	2
 1377	GM	fli	Kirya-Konzɘl	1	48741	119	kʼ	consonant	c-c	2
 1377	GM	fli	Kirya-Konzɘl	1	48742	30	ɡ	consonant	c	1
 1377	GM	fli	Kirya-Konzɘl	1	48743	14	ŋ	consonant	c	1
@@ -54676,7 +54676,7 @@ InventoryID	Source	LanguageCode	LanguageName	Trump	PhonemeID	GlyphID	Phoneme	Cla
 1514	GM	gkp	Kpelle, North	1	54678	30	ɡ	consonant	c	1
 1514	GM	gkp	Kpelle, North	1	54679	14	ŋ	consonant	c	1
 1514	GM	gkp	Kpelle, North	1	54680	442	˨	tone	t	1
-1514	GM	gkp	Kpelle, North	1	54681	2728	hv	consonant	c-c	2
+1514	GM	gkp	Kpelle, North	1	54681	2728	ʍ	consonant	c-c	2
 1514	GM	gkp	Kpelle, North	1	54682	90	ɣ	consonant	c	1
 1514	GM	gkp	Kpelle, North	1	54683	342	ɛ̃	vowel	v-c	2
 1514	GM	gkp	Kpelle, North	1	54684	391	ɓ	consonant	c	1

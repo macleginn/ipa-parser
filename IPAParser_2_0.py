@@ -80,7 +80,9 @@ MAIN_GLYPHS_CONS = {
     'w', #w
     'x', #x
     'ʢ', #\u02a2
-    'ʜ'  #\u029c
+    'ʜ', #\u029c
+    'ŝ', #\u015d
+    'ẑ'  #\u1e91
 }
 
 # Manners
@@ -91,7 +93,7 @@ NASALS = {'m', 'n', 'ŋ', 'ɱ', 'ɲ', 'ɳ', 'ɴ'}
 TRILLS = {'r', 'ʀ', 'ʙ', 'ʢ', 'ʜ'}
 TAPS = {'ɽ', 'ɾ', 'ⱱ'}
 LATERAL_TAPS = {'ɺ'}
-FRICATIVES = {'f', 'h', 's', 'v', 'x', 'z', 'ç', 'ð', 'ħ', 'ɕ', 'ɣ', 'ɦ', 'ɸ', 'ʁ', 'ʂ', 'ʃ', 'ʐ', 'ʑ', 'ʒ', 'ʕ', 'ʝ', 'β', 'θ', 'χ', 'ƺ', 'ʓ', 'ɧ'}
+FRICATIVES = {'f', 'h', 's', 'v', 'x', 'z', 'ç', 'ð', 'ħ', 'ɕ', 'ɣ', 'ɦ', 'ɸ', 'ʁ', 'ʂ', 'ʃ', 'ʐ', 'ʑ', 'ʒ', 'ʕ', 'ʝ', 'β', 'θ', 'χ', 'ƺ', 'ʓ', 'ɧ', 'ŝ', 'ẑ'}
 LATERAL_FRICATIVES = {'ɬ', 'ɮ'}
 APPROXIMANTS = {'j', 'w', 'ɥ', 'ɰ', 'ɹ', 'ɻ', 'ʋ', 'ʍ'}
 LATERAL_APPROXIMANTS = {'l', 'ɫ', 'ɭ', 'ʎ', 'ʟ'}
@@ -105,6 +107,7 @@ LABIODENTAL = {'f', 'v', 'ɱ', 'ʋ', 'ⱱ'}
 INTERDENTAL = {'ð', 'θ'}
 ALVEOLAR = {'ɗ', 'ɹ', 'ɾ', 'ɮ', 'ɬ', 'r', 't', 'n', 'ɫ', 'l', 'd', 's', 'z', 'ɺ'}
 POSTALVEOLAR = {'ʃ', 'ʒ'}
+HISSING_HUSHING = {'ŝ', 'ẑ'}
 RETROFLEX = {'ɖ', 'ɭ', 'ɳ', 'ɻ', 'ɽ', 'ʂ', 'ʈ', 'ʐ', 'ᶑ'}
 ALVEOLO_PALATAL = {'ɕ', 'ʑ'}
 PALATAL = {'c', 'j', 'ç', 'ɟ', 'ɲ', 'ʎ', 'ʝ', 'ʄ'}
@@ -117,7 +120,7 @@ EPIGLOTTAL = {'ʜ', 'ʢ', 'ʡ'}
 
 # Voiced segs
 
-VOICED = {'b', 'd', 'g', 'ɡ', 'j', 'l', 'm', 'n', 'r', 'v', 'w', 'z', 'ð', 'ŋ', 'ɓ', 'ᶑ', 'ɖ', 'ɗ', 'ɟ', 'ɠ', 'ɢ', 'ɣ', 'ɥ', 'ɦ', 'ɭ', 'ɮ', 'ɰ', 'ɱ', 'ɲ', 'ɳ', 'ɴ', 'ɹ', 'ɺ', 'ɻ', 'ɽ', 'ɾ', 'ʀ', 'ʁ', 'ʄ', 'ʎ', 'ʐ', 'ʑ', 'ʒ', 'ʙ', 'ʛ', 'ʝ', 'ʟ', 'ʢ', 'β', 'ɫ', 'ʓ', 'ʕ', 'ⱱ'}
+VOICED = {'b', 'd', 'g', 'ɡ', 'j', 'l', 'm', 'n', 'r', 'v', 'w', 'z', 'ð', 'ŋ', 'ɓ', 'ᶑ', 'ɖ', 'ɗ', 'ɟ', 'ɠ', 'ɢ', 'ɣ', 'ɥ', 'ɦ', 'ɭ', 'ɮ', 'ɰ', 'ɱ', 'ɲ', 'ɳ', 'ɴ', 'ɹ', 'ɺ', 'ɻ', 'ɽ', 'ɾ', 'ʀ', 'ʁ', 'ʄ', 'ʎ', 'ʐ', 'ʑ', 'ʒ', 'ʙ', 'ʛ', 'ʝ', 'ʟ', 'ʢ', 'β', 'ɫ', 'ʓ', 'ʕ', 'ⱱ', 'ẑ'}
 
 def get_CP():
     """Creates an empty parse dict."""
@@ -356,6 +359,8 @@ def parse_single_glyph(g):
         update_parse(parse, { 'place': 'postalveolar' })
     elif g in RETROFLEX:
         update_parse(parse, { 'place': 'retroflex' })
+    elif g in HISSING_HUSHING:
+        update_parse(parse, { 'place': 'hissing-hushing' })
     elif g in ALVEOLO_PALATAL:
         update_parse(parse, { 'place': 'alveolo-palatal' })
     elif g in PALATAL:
@@ -388,7 +393,7 @@ def parse_single_glyph(g):
     return parse
 
 def is_affricate(glyph_list):
-    return (glyph_list[0][0] in PLOSIVES and glyph_list[1][0] in set.union(FRICATIVES, LATERAL_FRICATIVES)) or (glyph_list[0][0] + glyph_list[1][0] in {'ɖɽ', 'ʈɽ'})
+    return (glyph_list[0][0] in set.union(PLOSIVES, IMPLOSIVES) and glyph_list[1][0] in set.union(FRICATIVES, LATERAL_FRICATIVES)) or (glyph_list[0][0] + glyph_list[1][0] in {'ɖɽ', 'ʈɽ', 'ʈɹ', 'ʈr'})
 
 def parse_affricate(glyph_list, parse):
     update_parse(parse, { 'manner': 'affricate' })
@@ -396,24 +401,29 @@ def parse_affricate(glyph_list, parse):
     update_parse(parse, { 'nasal': False })
     p1 = parse_single_glyph(glyph_list[0][0])
     p2 = parse_single_glyph(glyph_list[1][0])
+    update_parse(parse, { 'implosive': p1['implosive'] })
     # Place of an affricate is governed by the fricative part
-    # unless this is a labial affricate.
-    # /ps/ and /pf/ will not be distinguished
-    if p1['place'] != 'bilabial':
-        if not parse['place'] == 'dental':
+    # unless this is a retroflex affricate.
+    # /ps/ and /bz/ are treated as special cases.
+    if p1['place'] == 'retroflex':
+        update_parse(parse, { 'place': p1['place'] })
+    elif p1['place'] == 'bilabial' and p2['place'] in { 'alveolar', 'dental' }:
+        update_parse(parse, { 'place': 'labio-coronal' })
+    else:
+        # You can only impose dental place on alveolar
+        # or labiodental segments. The update will be succesful
+        # only if the place is not set yet, which should be
+        # the case if the input is valid.
+        if parse['place'] != 'dental':
             update_parse(parse, { 'place': p2['place'] })
+        # If the place is already set as dental, check
+        # that it is imposed on the segment of a correct type.
         elif p2['place'] not in {'alveolar', 'interdental'}:
             raise ValueError('Incompatible place features: %s' % parse['glyph'])
-    else:
-        if p2['place'] in { 'alveolar', 'dental' }:
-            update_parse(parse, { 'place': 'labio-coronal' })
-        else:
-            update_parse(parse, { 'place': p2['place'] })
     # Features of the first item will be ignored,
     # except for breathy voice in voiced affricates.
     # Implosive affricates are considered unlikely
     # until good proof of their existence.
-    update_parse(parse, { 'implosive': False })
     update_parse(parse, { 'lateral': p2['lateral'] })
     if parse['voice'] == 'voiceless' and p2['voice'] == 'voiced':
         parse['voice'] = 'unvoiced'
@@ -435,7 +445,8 @@ def parse_bifocal(glyph_list, parse):
     update_parse(parse, { 'lateral': False })
     s = glyph_list[0][0] + glyph_list[1][0]
     if s in {'ɡb', 'ɠɓ', 'ŋm'}:
-        update_parse(parse, { 'voice': 'voiced' })
+        if parse['voice'] is None:
+            update_parse(parse, { 'voice': 'voiced' })
     else:
         update_parse(parse, { 'voice': 'voiceless' })
     if s == 'ɠɓ':
@@ -450,7 +461,6 @@ def parse_bifocal(glyph_list, parse):
 
 def parse_double_glyph(phon, feat_dict):
     glyph_list = separate_main_glyphs(phon)
-    # Are you a prenasalised segment?
     if is_bifocal(glyph_list):
         parse_bifocal(glyph_list, feat_dict)
     elif glyph_list[0][0] in NASALS:
@@ -460,11 +470,16 @@ def parse_double_glyph(phon, feat_dict):
         while phon[0] not in MAIN_GLYPHS_CONS:
             phon = phon[1:]
         extract_core_features(phon, feat_dict)
+    elif is_affricate(glyph_list):
+        parse_affricate(glyph_list, feat_dict)
     elif glyph_list[0][0] == 'ʔ':
         update_parse(feat_dict, { 'pre-features': 'pre-glottalised' })
         extract_core_features(phon[1:], feat_dict)
     elif glyph_list[-1][0] == 'r':
         update_parse(feat_dict, { 'additional articulations': 'trilled released' })
+        extract_core_features(phon[:-1], feat_dict)
+    elif glyph_list[-1][0] == 'ʔ':
+        update_parse(feat_dict, { 'additional articulations': 'glottalised' })
         extract_core_features(phon[:-1], feat_dict)
     elif glyph_list[-1][0] == 'ɾ':
         update_parse(feat_dict, { 'additional articulations': 'flapped' })
@@ -478,33 +493,41 @@ def parse_double_glyph(phon, feat_dict):
     elif glyph_list[-1][0] in { 'h', 'ɦ' }:
         update_parse(feat_dict, { 'additional articulations': 'aspirated' })
         extract_core_features(phon[:-1], feat_dict)
-    elif is_affricate(glyph_list):
-        parse_affricate(glyph_list, feat_dict)
     else:
         raise ValueError("Can't parse the string: %s" % phon)
 
 def extract_core_features(phon, feat_dict):
     glyph_list = separate_main_glyphs(phon)
-    if len(glyph_list) == 4:
-        # We only know /ŋmkp, ŋmɡb/ as of now
-        if not glyph_list[0][0] + glyph_list[1][0] == 'ŋm':
-            raise ValueError('Unrecognised 4-glyph sequence: %s' % phon)
-        update_parse(feat_dict, { 'pre-features': 'pre-nasalised'})
-        extract_core_features(phon[2:], feat_dict)
+    # TODO: can we treat all 3+ sequences in a unified way?
+    if len(glyph_list) >= 4:
+        if glyph_list[0][0] + glyph_list[1][0] == 'ŋm':
+            update_parse(feat_dict, { 'pre-features': 'pre-nasalised' })
+            extract_core_features(phon[2:], feat_dict)
+        elif glyph_list[0][0] in NASALS:
+            update_parse(feat_dict, { 'pre-features': 'pre-nasalised' })
+            phon = phon[1:]
+            # Ignore all the modifiers for the prenasalisation
+            while phon[0] not in MAIN_GLYPHS_CONS:
+                phon = phon[1:]
+            extract_core_features(phon, feat_dict)
+        else:
+            raise ValueError('Unrecognised long sequence: %s' % phon)
     elif len(glyph_list) == 3:
-        # Only pre-nasalised affricates have been met with so far
         if glyph_list[0][0] in NASALS:
-            update_parse(feat_dict, { 'pre-features': 'pre-nasalised'})
+            update_parse(feat_dict, { 'pre-features': 'pre-nasalised' })
             phon = phon[1:]
             # Ignore all the modifiers for the prenasalisation
             while phon[0] not in MAIN_GLYPHS_CONS:
                 phon = phon[1:]
             extract_core_features(phon, feat_dict)
         elif glyph_list[2][0] in TRILLS:
-            update_parse(feat_dict, { 'additional articulations': 'trilled released'})
+            update_parse(feat_dict, { 'additional articulations': 'trilled released' })
             extract_core_features(phon[:-1], feat_dict)
         elif glyph_list[2][0] in TAPS:
-            update_parse(feat_dict, { 'additional articulations': 'flapped'})
+            update_parse(feat_dict, { 'additional articulations': 'flapped' })
+            extract_core_features(phon[:-1], feat_dict)
+        elif glyph_list[2][0] in {'h', 'ɦ'}:
+            update_parse(feat_dict, { 'additional articulations': 'aspirated' })
             extract_core_features(phon[:-1], feat_dict)
         else:
             raise ValueError('Unrecognised 3-glyph sequence: %s' % phon)
@@ -518,7 +541,6 @@ def extract_core_features(phon, feat_dict):
             if el not in POST_MODIFIERS:
                 raise ValueError('Unrecognised modifier or diacritic: \u25cc%s in the phoneme %s' % (el, phon))
         # Resolve possible conflicts
-        # For now, only voiced -> voiceless is possible
         if feat_dict['voice'] == 'voiceless' and base_parse['voice'] == 'voiced':
             if not (base_parse['lateral'] or base_parse['nasal'] or base_parse['implosive']):
                 feat_dict['voice'] = 'unvoiced'
@@ -526,6 +548,10 @@ def extract_core_features(phon, feat_dict):
         elif feat_dict['voice'] == 'voiceless' and base_parse['voice'] == 'voiceless':
             eprint('Redundant voicelessness: %s' % CURRENT_P)
             del base_parse['voice']
+        # Can impose dental place on alveolar or interdental segments.
+        # Otherwise will fail in the update phase.
+        # TODO: bring the error message in line with the better one
+        # in parse_affricate.
         if feat_dict['place'] == 'dental' and base_parse['place'] in {'alveolar', 'interdental'}:
             del base_parse['place']
         for k,v in base_parse.items():
@@ -584,6 +610,8 @@ def parse_consonant(phon):
                 raise ValueError('Incompatible length diacritics: %s' % phon)
         elif POST_MODIFIERS[phon[-1]] == 'dental':
             update_parse(parse, { 'place': 'dental' })
+        elif POST_MODIFIERS[phon[-1]] == 'centralised':
+            update_parse(parse, { 'additional articulations': 'breathy voiced' })
         else:
             update_parse(parse, { 'additional articulations': POST_MODIFIERS[phon[-1]] })
         phon = phon[:-1]
