@@ -470,6 +470,9 @@ def parse_double_glyph(phon, feat_dict):
         while phon[0] not in MAIN_GLYPHS_CONS:
             phon = phon[1:]
         extract_core_features(phon, feat_dict)
+    elif glyph_list[-1][0] in { 'h', 'ɦ' }:
+        update_parse(feat_dict, { 'additional articulations': 'aspirated' })
+        extract_core_features(phon[:-1], feat_dict)
     elif is_affricate(glyph_list):
         parse_affricate(glyph_list, feat_dict)
     elif glyph_list[0][0] == 'ʔ':
@@ -489,9 +492,6 @@ def parse_double_glyph(phon, feat_dict):
         extract_core_features(phon[:-1], feat_dict)
     elif glyph_list[-1][0] in LATERAL_APPROXIMANTS:
         update_parse(feat_dict, { 'additional articulations': 'lateral released' })
-        extract_core_features(phon[:-1], feat_dict)
-    elif glyph_list[-1][0] in { 'h', 'ɦ' }:
-        update_parse(feat_dict, { 'additional articulations': 'aspirated' })
         extract_core_features(phon[:-1], feat_dict)
     else:
         raise ValueError("Can't parse the string: %s" % phon)
@@ -612,6 +612,8 @@ def parse_consonant(phon):
             update_parse(parse, { 'place': 'dental' })
         elif POST_MODIFIERS[phon[-1]] == 'centralised':
             update_parse(parse, { 'additional articulations': 'breathy voiced' })
+        elif POST_MODIFIERS[phon[-1]] == 'alveolar':
+            pass
         else:
             update_parse(parse, { 'additional articulations': POST_MODIFIERS[phon[-1]] })
         phon = phon[:-1]
@@ -629,6 +631,33 @@ def parse_consonant(phon):
             raise Exception('The value of the feature %s is not set for the phoneme %s' % (k, phon))
 
     return parse
+
+def to_string(parse):
+    if parse['click']:
+        return 'click'
+    parse_arr = []
+    fixed_order_or_skip = {'length', 'voice', 'nasal', 'lateral', 'place', 'manner', 'glyph'}
+    parse_arr.append(parse['length'])
+    parse_arr.append(parse['voice'])
+    if parse['nasal']:
+        parse_arr.append('nasal')
+    elif parse['lateral']:
+        parse_arr.append('lateral')
+    parse_arr.append(parse['place'])
+    parse_arr.append(parse['manner'])
+    tail = []
+    for k, v in parse.items():
+        if k in fixed_order_or_skip:
+            continue
+        if isinstance(v, bool):
+            if v:
+                tail.append(k)
+        elif isinstance(v, list):
+            for el in v:
+                tail.append(el)
+        else:
+            tail.append(v)
+    return(' '.join(parse_arr + sorted(tail)))
 
 pc = parse_consonant
 
