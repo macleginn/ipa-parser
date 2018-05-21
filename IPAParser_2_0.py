@@ -259,7 +259,7 @@ def eprint(*args, **kwargs):
 
 def separate_main_glyphs(phon):
     """Assumes that pre-features and additional articulation
-    have been taken care of. Failes otherwise."""
+    have been taken care of. Fails otherwise."""
     core_els = []
     for el in phon:
         try:
