@@ -542,7 +542,7 @@ def extract_core_features(phon, feat_dict):
                 raise ValueError('Unrecognised modifier or diacritic: \u25cc%s in the phoneme %s' % (el, phon))
         # Resolve possible conflicts
         if feat_dict['voice'] == 'voiceless' and base_parse['voice'] == 'voiced':
-            if not (base_parse['lateral'] or base_parse['nasal'] or base_parse['implosive']):
+            if not (base_parse['lateral'] or base_parse['nasal'] or base_parse['implosive'] or base_parse['manner'] in {'trill', 'tap'}):
                 feat_dict['voice'] = 'unvoiced'
             del base_parse['voice']
         elif feat_dict['voice'] == 'voiceless' and base_parse['voice'] == 'voiceless':
